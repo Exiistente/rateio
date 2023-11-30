@@ -2,7 +2,7 @@ const {Sequelize} = require('sequelize');
 const CNN = new Sequelize (
     "rateiogas", 
     "root",
-    "",
+    "fiscaltecti",
     {
         host: "localhost",
         port: 3306,
