@@ -4,6 +4,8 @@ const app = express();
 const CNN = require('./models/Cnn');
 const Responsaveis = require('./models/Responsaveis');
 const Casas = require('./models/Casas');
+const Consumos = require('./models/Consumo');
+const ValorMetroCubico = require('./models/ValorMetroCubico');
 
 app.use(express.json());
 
@@ -55,7 +57,28 @@ app.get("/listarCasas", async (req, res) => {
     )
 })
 
+app.post("/cadastrarConsumo", async (req, res) => {
+    let idCasa = req.body.idCasa;
+    let idResponsavel = req.body.idResponsavel;
+    let valorMetro = req.body.valorMetro
+    let valorMesAtual = req.body.valorMesAtual
 
+    console.log(idCasa, idResponsavel, valorMetro, valorMesAtual)
+})
+
+app.put("/editarValorMetroCubico", async (req, res) => {
+
+    await ValorMetroCubico.update({ValorMetroCubico: req.body.valorMetroCubico}, {
+        where: {
+            idValorMetroCubico: 1
+        }
+    }).then(response => {
+        res.send({status: true, mensagem: "Valor metro cubico foi atualizado!"});
+    }).catch(erro => {
+        res.send({status: false, mensagem: erro});
+    })
+
+})
 
 
 
